@@ -1,0 +1,46 @@
+# syntax = docker/dockerfile:1
+# escape=`
+
+##
+# v1.0.5 <=  Woodpecker Agent Windows < v2.7.0
+# issue: build: release windows binary in zip file not tar.gz
+# https://github.com/woodpecker-ci/woodpecker/issues/3590
+##
+
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+
+# Get version from https://github.com/woodpecker-ci/woodpecker/tags
+ARG WOODPECKER_AGENT_VERSION=v1.0.5
+
+LABEL architecture="x86_64" `
+      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+      name="geco-it/woodpecker-agent" `
+      vendor="Geco-iT"
+
+SHELL ["cmd", "/S", "/C"]
+
+USER ContainerAdministrator
+
+# Install Busybox Unix Tools
+RUN mkdir C:\bin && `
+    curl -fSLo /bin/busybox.exe https://frippery.org/files/busybox/busybox64.exe && `
+    for /f "tokens=*" %i in ('C:\bin\busybox --list') do mklink C:\bin\%i.exe C:\bin\busybox.exe
+
+# Add C:\bin to System Path
+RUN setx path "C:\\bin;%path%"
+
+# Install Woodpecker Windows Agent
+RUN mkdir C:\etc\ssl\certs `
+		  C:\etc\woodpecker && `
+    curl -fSLo /woodpecker-agent.tar.gz https://github.com/woodpecker-ci/woodpecker/releases/download/%WOODPECKER_AGENT_VERSION%/woodpecker-agent_windows_amd64.tar.gz && `
+    tar -xvzf /woodpecker-agent.tar.gz -C C:\bin && `
+    rm -f /woodpecker-agent.tar.gz
+
+# Internal setting do NOT change! Signals that woodpecker is running inside a container
+ENV GODEBUG=netdns=go `
+    WOODPECKER_IN_CONTAINER=true
+
+EXPOSE 3000
+
+HEALTHCHECK CMD ["/bin/woodpecker-agent", "ping"]
+ENTRYPOINT ["/bin/woodpecker-agent"]

@@ -1,0 +1,19 @@
+# syntax = docker/dockerfile:1
+# escape=`
+
+ARG DOCKER_REGISTRY
+FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+
+LABEL architecture="x86_64" `
+      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+      name="geco-it/woodpecker-gitea-package-plugin" `
+      vendor="Geco-iT"
+
+SHELL ["cmd", "/S", "/C"]
+
+COPY gitea-package.sh C:\bin\
+
+SHELL ["bash.exe", "-c"]
+
+ENTRYPOINT ["bash.exe"]
+CMD ["C:\\bin\\gitea-package.sh"]

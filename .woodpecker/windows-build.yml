@@ -1,0 +1,109 @@
+---
+labels:
+  platform: windows/amd64
+  backend: local
+
+steps:
+  configure-environment:
+    image: bash.exe
+    environment:
+      DOCKER_REGISTRY:
+        from_secret: DOCKER_REGISTRY
+    commands:
+      - cd ./build
+      - cp .env.sample .env
+      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY};" -i .env
+    when:
+      event: push
+
+  build-docker-woodpecker-agent:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build agent
+    when:
+      event: push
+
+  build-docker-base-image:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build base
+    when:
+      event: push
+
+  'build-docker-python-3.12-image':
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build python-3.12
+    when:
+      event: push
+
+  'build-docker-python-3.11-image':
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build python-3.11
+    when:
+      event: push
+
+  'build-docker-python-3.10-image':
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build python-3.10
+    when:
+      event: push
+
+  build-docker-r-project-image:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build r-project
+    when:
+      event: push
+
+  build-docker-git-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build plugin-git
+    when:
+      event: push
+
+  build-docker-gitea-package-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build plugin-gitea-package
+    when:
+      event: push
+
+  build-docker-git-basic-changelog-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build plugin-git-basic-changelog
+    when:
+      event: push
+
+  build-docker-teams-notify-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build plugin-teams-notify
+    when:
+      event: push
+
+  clean-environment:
+    image: bash.exe
+    commands:
+      - echo "Remove all stopped containers..."
+      - docker rm $(docker ps --filter "status=exited" -q) 2> /dev/null || true
+      - echo "Remove all unused images..."
+      - docker image rm $(docker images --filter "dangling=true" -q --no-trunc) 2> /dev/null || true
+      - echo "Remove Woodpecker volumes..."
+      - docker volume rm $(docker volume ls --filter name=^wp_* --filter dangling=true  -q) 2> /dev/null || true
+    when:
+      event: push

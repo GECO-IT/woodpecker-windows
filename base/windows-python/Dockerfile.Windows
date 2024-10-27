@@ -1,0 +1,26 @@
+# syntax = docker/dockerfile:1
+# escape=`
+
+ARG DOCKER_REGISTRY
+FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+
+ARG PYTHON_VERSION=311
+
+LABEL architecture="x86_64" `
+      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+      name="geco-it/woodpecker-windows-python" `
+      vendor="Geco-iT"
+
+SHELL ["cmd", "/S", "/C"]
+
+# Install Python
+RUN choco install -y python%PYTHON_VERSION% --params "/InstallDir:C:\Python /NoLockdown" && `
+    rmdir /S /Q C:\tmp\cache
+
+# Upgrade pip
+RUN python.exe -m pip install --upgrade pip && `
+    pip install --upgrade setuptools
+
+SHELL ["bash.exe", "-c"]
+
+ENTRYPOINT ["bash.exe"]

@@ -1,12 +1,10 @@
-# ---> geco-gitignore
-#Geco-it Custom Git-Ignore
-
-#Remove debian packages
-*.deb
-
-#Editor's swap files
-#Gay
+# Editor's swap files
 *~
-#Not gay
 *.swp
 
+# Woodpecker stuff
+agent/backend-docker/volumes/ssl/*.crt
+agent/backend-docker/volumes/config/*.conf
+.env.woodpecker-agent
+.env
+agent/backend-local/bin

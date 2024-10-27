@@ -1,0 +1,105 @@
+---
+labels:
+  platform: windows/amd64
+  backend: local
+
+depends_on:
+  - windows-build
+
+steps:
+  configure-environment:
+    image: bash.exe
+    environment:
+      DOCKER_REGISTRY:
+        from_secret: DOCKER_REGISTRY
+      DOCKER_REGISTRY_USERNAME:
+        from_secret: DOCKER_REGISTRY_USERNAME
+      DOCKER_REGISTRY_PASSWORD:
+        from_secret: DOCKER_REGISTRY_PASSWORD
+    commands:
+      - cd ./build
+      - cp .env.sample .env
+      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY};" -i .env
+      - echo "$${DOCKER_REGISTRY_PASSWORD}" | docker login $${DOCKER_REGISTRY} --username $${DOCKER_REGISTRY_USERNAME} --password-stdin
+    when:
+      event: tag
+
+  push-docker-woodpecker-agent:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push agent
+    when:
+      event: tag
+
+  build-docker-base-image:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push base
+    when:
+      event: tag
+
+  'push-docker-python-3.12-image':
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push python-3.12
+    when:
+      event: tag
+
+  'push-docker-python-3.11-image':
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push python-3.11
+    when:
+      event: tag
+
+  'push-docker-python-3.10-image':
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push python-3.10
+    when:
+      event: tag
+
+  push-docker-r-project-image:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push r-project
+    when:
+      event: tag
+
+  push-docker-git-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push plugin-git
+    when:
+      event: tag
+
+  push-docker-gitea-package-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push plugin-gitea-package
+    when:
+      event: tag
+
+  push-docker-git-basic-changelog-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push plugin-git-basic-changelog
+    when:
+      event: tag
+
+  push-docker-teams-notify-plugin:
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose push plugin-teams-notify
+    when:
+      event: tag

@@ -1,0 +1,106 @@
+---
+version: "3.9"
+
+services:
+
+  ##
+  # Woodpecker Agent
+  ##
+  agent:
+    image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_VERSION}
+    build:
+      context: ../agent/backend-docker
+      # build: release windows binary in zip file not tar.gz (view #3590)
+      dockerfile: Dockerfile.Windows.old  # Dockerfile.Windows (version >= v2.7.0)
+      args:
+        WOODPECKER_AGENT_VERSION: ${AGENT_VERSION}
+    platform: windows/amd64
+
+  ##
+  # Woodpecker Base images
+  ##
+  base:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+    build:
+      context: ../base/windows-base
+      dockerfile: Dockerfile.Windows
+    platform: windows/amd64
+
+  python-3.12:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.12
+    build:
+      context: ../base/windows-python
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+        PYTHON_VERSION: 312
+    platform: windows/amd64
+
+  python-3.11:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.11
+    build:
+      context: ../base/windows-python
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+        PYTHON_VERSION: 311
+    platform: windows/amd64
+
+  python-3.10:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.10
+    build:
+      context: ../base/windows-python
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+        PYTHON_VERSION: 310
+    platform: windows/amd64
+
+  r-project:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-r:latest
+    build:
+      context: ../base/windows-r-project
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+    platform: windows/amd64
+
+  ##
+  # Woodpecker Plugins
+  ##
+  plugin-git:
+    image: ${DOCKER_REGISTRY}/woodpecker-git-plugin:latest
+    build:
+      context: ../plugins/plugin-git
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+        PLUGIN_VERSION: ${PLUGIN_GIT_VERSION}
+    platform: windows/amd64
+
+  plugin-gitea-package:
+    image: ${DOCKER_REGISTRY}/woodpecker-gitea-package-plugin:latest
+    build:
+      context: ../plugins/plugin-gitea-package
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+    platform: windows/amd64
+
+  plugin-teams-notify:
+    image: ${DOCKER_REGISTRY}/woodpecker-teams-notify-plugin:latest
+    build:
+      context: ../plugins/plugin-teams-notify
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+    platform: windows/amd64
+
+  plugin-git-basic-changelog:
+    image: ${DOCKER_REGISTRY}/woodpecker-git-basic-changelog-plugin:latest
+    build:
+      context: ../plugins/plugin-git-basic-changelog
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+    platform: windows/amd64

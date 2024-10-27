@@ -1,0 +1,32 @@
+# syntax = docker/dockerfile:1
+# escape=`
+
+ARG DOCKER_REGISTRY
+FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+
+ARG PLUGIN_VERSION=2.6.0
+
+LABEL architecture="x86_64" `
+      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+      name="geco-it/woodpecker-plugin-git" `
+      vendor="Geco-iT"
+
+SHELL ["cmd", "/S", "/C"]
+
+# Install last Git (https://community.chocolatey.org/packages/git)
+RUN choco install git -y --params "'/Symlinks /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration'" && `
+    choco install poshgit -y && `
+    rmdir /S /Q C:\tmp\cache
+
+# Set System path
+RUN setx path "C:\\Program Files\\Git\\bin;%path%"
+
+# Install plugin
+ENV GODEBUG=netdns=go
+
+WORKDIR C:\woodpecker
+RUN curl -fSLo /bin/plugin-git.exe https://github.com/woodpecker-ci/plugin-git/releases/download/%PLUGIN_VERSION%/windows-amd64_plugin-git.exe
+
+SHELL ["bash.exe", "-c"]
+
+ENTRYPOINT ["plugin-git.exe"]

@@ -1,0 +1,42 @@
+{
+    "@context": "https://schema.org/extensions",
+    "@type": "MessageCard",
+    "potentialAction": [
+    {
+        "@type": "OpenUri",
+        "name": "Open Build Page",
+        "targets": [{
+            "os": "default",
+            "uri": "TEMPLATE_BUILD_URL"
+        }]
+    }, {
+        "@type": "OpenUri",
+        "name": "Go to Commit Code",
+        "targets": [{
+            "os": "default",
+            "uri": "TEMPLATE_COMMIT_URL"
+        }]
+    }],
+    "sections": [
+    {
+        "activityTitle": "@TEMPLATE_AUTHOR",
+        "activitySubtitle": "TEMPLATE_FINISHED",
+        "activityImage": "TEMPLATE_IMAGE_AUTHOR",
+        "facts": [{
+            "name": "Project:",
+            "value": "TEMPLATE_PROJECT_NAME"
+        }, {
+            "name": "Commit Message:",
+            "value": "TEMPLATE_COMMIT_MESSAGE"
+        }, {
+            "name": "Version:",
+            "value": "TEMPLATE_PROJECT_VERSION"
+        }],
+        "text": "",
+        "markdown": false
+    }],
+    "markdown": false,
+    "summary": " ",
+    "themeColor": "TEMPLATE_COLOR",
+    "title": "TEMPLATE_TITLE"
+}

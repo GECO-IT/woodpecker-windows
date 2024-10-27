@@ -1,0 +1,16 @@
+---
+version: "3.9"
+
+services:
+  agent:
+    image: registry.geco-it.net/public/woodpecker-agent:v2.6.0
+    command: agent
+    restart: always
+    volumes:
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+      - C:\ProgramData\woodpecker-docker\volumes\ssl:C:\etc\ssl\certs
+      - C:\ProgramData\woodpecker-docker\volumes\config:C:\etc\woodpecker
+    env_file:
+      - .env.woodpecker-agent
