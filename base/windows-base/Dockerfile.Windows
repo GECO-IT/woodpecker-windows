@@ -13,7 +13,7 @@ SHELL ["cmd", "/S", "/C"]
 # Install Busybox Unix Tools
 RUN mkdir C:\bin && `
     curl -fSLo /bin/busybox.exe https://frippery.org/files/busybox/busybox64.exe && `
-	for /f "tokens=*" %i in ('C:\bin\busybox --list') do mklink C:\bin\%i.exe C:\bin\busybox.exe
+    for /f "tokens=*" %i in ('C:\bin\busybox --list') do mklink C:\bin\%i.exe C:\bin\busybox.exe
 
 # Add C:\bin to System Path
 RUN setx path "C:\\bin;%path%"
