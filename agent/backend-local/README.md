@@ -37,7 +37,7 @@ C:\ProgramData\woodpecker> setx /M PATH "%SETUP_PATH%\bin;%PATH%"
 ---
 labels:
   platform: windows/amd64
-  backend: docker
+  backend: local
 
 steps:
 

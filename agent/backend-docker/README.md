@@ -90,7 +90,18 @@ C:\> docker image pull mcr.microsoft.com/windows/nanoserver:ltsc2022
 
 ## Build your own containers
 
-Follow [documentation](../../build/README.md)
+Follow [documentation](../../build/README.md) or you can
+use images at <https://hub.docker.com/search?q=gecoit84>
+
+```command
+C:\> docker pull gecoit84/woodpecker-agent:2.6.0
+C:\> docker pull gecoit84/woodpecker-windows-base:latest
+C:\> docker pull gecoit84/woodpecker-git-plugin:2.6.0
+
+# retag for git trusted plugin
+C:\> docker image tag gecoit84/woodpecker-git-plugin:2.6.0 ^
+                      woodpeckerci/plugin-git:latest
+```
 
 ## Install Woodpecker Agent
 
@@ -154,7 +165,11 @@ workspace:
 
 clone:
   git:
-    image: <REPO_URL>/woodpecker-git-plugin
+    # $ docker image tag \
+    #        <REPO_URL>/woodpecker/woodpecker-git-plugin:latest \
+    #        woodpeckerci/plugin-git:latest
+    image: woodpeckerci/plugin-git
+    pull: false
 
 steps:
 ...

@@ -36,7 +36,11 @@ workspace:
 
 clone:
   git:
-    image: <REPO_URL>/woodpecker-git-plugin
+    # $ docker image tag \
+    #        <REPO_URL>/woodpecker/woodpecker-git-plugin:latest \
+    #        woodpeckerci/plugin-git:latest
+    image: woodpeckerci/plugin-git
+    pull: false
 
 steps:
 ...
