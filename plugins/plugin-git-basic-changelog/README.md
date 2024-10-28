@@ -16,8 +16,9 @@ Generate a **CHANGELOG.md** file with all commit logs since the last TAG
 ...
 clone:
   git:
-    # settings for generate-basic-changelog plugin
-    settings:
+    image: woodpeckerci/plugin-git
+    pull: false  # on Windows agent
+    settings:  # for git-basic-changelog-plugin
       depth: 0
       partial: false
       tags: true  # if you use event push for this plugin
