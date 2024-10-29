@@ -43,7 +43,7 @@ $ cat CHANGELOG.md
 - test new woodpecker windows docker run - v0.152
 - test new woodpecker windows docker run - v0.151
 ...
-_**Full Changelog**__: [1.2411.4 ... 1.2411.5](https://...)
+_**Compare**__: [1.2411.4...1.2411.5](https://...)
 ```
 
 ![changelog](./asset/changelog_git_release.png)

@@ -10,7 +10,7 @@ if $(git describe --tags --abbrev=0 &> /dev/null); then
 		echo "* LAST_TAG: ${LAST_TAG}"
 		echo "* NEW_TAG: ${CI_COMMIT_TAG}"
 		git log ${LAST_TAG}..${CI_COMMIT_TAG} --no-merges --pretty="- %s" | tee -a CHANGELOG.md &> /dev/null
-		echo -e "\n__**Full Changelog**__: [${LAST_TAG} ... ${CI_COMMIT_TAG}](${CI_REPO_URL}/compare/${LAST_TAG}...${CI_COMMIT_TAG})" >> CHANGELOG.md
+		echo -e "\n__**Compare**__: [${LAST_TAG}...${CI_COMMIT_TAG}](${CI_REPO_URL}/compare/${LAST_TAG}...${CI_COMMIT_TAG})" >> CHANGELOG.md
 	# print all commit log lines from LAST_TAG
 	else
 		LAST_TAG="$(git describe --tags --abbrev=0)"
