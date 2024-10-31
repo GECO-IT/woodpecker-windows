@@ -1,42 +1,102 @@
 {
-    "@context": "https://schema.org/extensions",
-    "@type": "MessageCard",
-    "potentialAction": [
-    {
-        "@type": "OpenUri",
-        "name": "Open Build Page",
-        "targets": [{
-            "os": "default",
-            "uri": "TEMPLATE_BUILD_URL"
-        }]
-    }, {
-        "@type": "OpenUri",
-        "name": "Go to Commit Code",
-        "targets": [{
-            "os": "default",
-            "uri": "TEMPLATE_COMMIT_URL"
-        }]
-    }],
-    "sections": [
-    {
-        "activityTitle": "@TEMPLATE_AUTHOR",
-        "activitySubtitle": "TEMPLATE_FINISHED",
-        "activityImage": "TEMPLATE_IMAGE_AUTHOR",
-        "facts": [{
-            "name": "Project:",
-            "value": "TEMPLATE_PROJECT_NAME"
-        }, {
-            "name": "Commit Message:",
-            "value": "TEMPLATE_COMMIT_MESSAGE"
-        }, {
-            "name": "Version:",
-            "value": "TEMPLATE_PROJECT_VERSION"
-        }],
-        "text": "",
-        "markdown": false
-    }],
-    "markdown": false,
-    "summary": " ",
-    "themeColor": "TEMPLATE_COLOR",
-    "title": "TEMPLATE_TITLE"
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.5",
+                "body": [
+                    {
+                        "type": "Container",
+                        "bleed": true,
+                        "spacing": "None",
+                        "style": "TEMPLATE_COLOR",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": "TEMPLATE_TITLE",
+                                "weight": "bolder",
+                                "size": "medium",
+                                "color": "TEMPLATE_COLOR"
+                            },
+                            {
+                                "type": "ColumnSet",
+                                "columns": [
+                                    {
+                                        "type": "Column",
+                                        "width": "auto",
+                                        "items": [
+                                            {
+                                                "type": "Image",
+                                                "url": "TEMPLATE_IMAGE_AUTHOR",
+                                                "size": "small",
+                                                "style": "Person"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "Column",
+                                        "width": "stretch",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "@TEMPLATE_AUTHOR",
+                                                "weight": "bolder",
+                                                "wrap": true
+                                            },
+                                            {
+                                                "type": "TextBlock",
+                                                "spacing": "None",
+                                                "text": "Created {{DATE(TEMPLATE_DATE, LONG)}} at {{TIME(TEMPLATE_DATE)}}",
+                                                "isSubtle": true,
+                                                "wrap": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "FactSet",
+                                "facts": [
+                                    {
+
+                                        "title": "Project:",
+                                        "value": "_TEMPLATE_PROJECT_NAME_"
+                                    },
+                                    {
+                                        "title": "Message:",
+                                        "value": "_TEMPLATE_COMMIT_MESSAGE_"
+                                    },
+                                    {
+                                        "title": "Version:",
+                                        "value": "_TEMPLATE_PROJECT_VERSION_"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "actions": [
+                    {
+                        "type": "Action.OpenUrl",
+                        "title": "View Workflow run",
+                        "url": "TEMPLATE_BUILD_URL"
+                    },
+                    {
+                        "type": "Action.OpenUrl",
+                        "title": "TEMPLATE_COMMIT_BUTTON",
+                        "url": "TEMPLATE_COMMIT_URL"
+                    }
+                ]
+            }
+        }
+    ]
 }

@@ -15,8 +15,8 @@ WORKDIR C:\data
 
 # Install GnuWin file and imagemagick for convert Avatar Image URI 
 # to base64 (use if your forge are private)
-COPY webhook.sh file-5.03-setup.exe C:\bin\
-COPY card.json C:\data\
+COPY teams-notify-windows.sh file-5.03-setup.exe C:\bin\
+COPY card.json .
 RUN C:\bin\file-5.03-setup.exe /VERYSILENT /NORESTART /DIR="C:\GnuWin" && `
     choco install -y imagemagick && `
     rmdir /S /Q C:\tmp\cache
@@ -24,4 +24,4 @@ RUN C:\bin\file-5.03-setup.exe /VERYSILENT /NORESTART /DIR="C:\GnuWin" && `
 SHELL ["bash.exe", "-c"]
 
 ENTRYPOINT ["bash.exe"]
-CMD ["C:\\bin\\webhook.sh"]
+CMD ["C:\\bin\\teams-notify-windows.sh"]
