@@ -1,22 +1,45 @@
 # syntax = docker/dockerfile:1
 # escape=`
 
-ARG DOCKER_REGISTRY
-FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+
+# Busybox Unicode https://github.com/rmyorston/busybox-w32
+ARG BUSYBOX_VERSION=busybox-w64u-FRP-5467-g9376eebd8.exe `
+    BUSYBOX_VERSION_SHA256=a78891d1067c6cd36c9849754d7be0402aae1bc977758635c27911fd7c824f6b
+
+# Git installer https://github.com/git-for-windows/git
+ARG GIT_VERSION=2.47.0 `
+    GIT_VERSION_SHA256=b6ca6dcd5c818396faa57e06e10489aed3e16396317475ca8e88e30e4eb2e3c5
 
 LABEL architecture="x86_64" `
       maintainer="Geco-iT Team <contact@geco-it.fr>" `
-      name="geco-it/woodpecker-teams-notify-plugin" `
+      name="geco-it/woodpecker-git-basic-changelog" `
       vendor="Geco-iT"
 
 SHELL ["cmd", "/S", "/C"]
 
-# Install last Git (https://community.chocolatey.org/packages/git)
-RUN choco install git -y --params "'/NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration'" && `
-    choco install poshgit -y && `
-    rmdir /S /Q C:\tmp\cache
+# Install Busybox Unix Tools (https://github.com/rmyorston/busybox-w32)
+RUN mkdir C:\bin && `
+    curl -fSsLo /bin/busybox64u.exe https://frippery.org/files/busybox/%BUSYBOX_VERSION% && `
+    /bin/busybox64u --install -s /bin && `
+    /bin/echo "%BUSYBOX_VERSION_SHA256% /bin/busybox64u.exe" > SHA256SUM && `
+    /bin/sha256sum -c SHA256SUM && `
+    /bin/rm -f SHA256SUM
+
+# Install Git
+RUN curl -fSsLo git.tar.bz2 https://github.com/git-for-windows/git/releases/download/v%GIT_VERSION%.windows.2/Git-%GIT_VERSION%.2-64-bit.tar.bz2 && `
+    /bin/echo "%GIT_VERSION_SHA256% git.tar.bz2" > SHA256SUM && `
+    /bin/sha256sum -c SHA256SUM && `
+    /bin/mkdir /git && `
+    /bin/tar -xf git.tar.bz2 -C /git && `
+    /bin/rm -f git.tar.bz2 SHA256SUM
+
+# Set System path
+RUN setx /m PATH "C:\\git\\cmd;C:\\git\\mingw64\\bin;C:\\git\\usr\\bin;C:\\bin;%path%"
 
 COPY git-log.sh C:\bin\
+
+USER ContainerUser
 
 SHELL ["bash.exe", "-c"]
 
