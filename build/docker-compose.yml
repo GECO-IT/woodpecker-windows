@@ -74,7 +74,6 @@ services:
       context: ../plugins/plugin-git
       dockerfile: Dockerfile.Windows
       args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
         PLUGIN_VERSION: ${PLUGIN_GIT_VERSION}
     platform: windows/amd64
 
