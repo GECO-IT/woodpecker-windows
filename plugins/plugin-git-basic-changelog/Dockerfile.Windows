@@ -18,6 +18,8 @@ LABEL architecture="x86_64" `
 
 SHELL ["cmd", "/S", "/C"]
 
+USER ContainerAdministrator
+
 # Install Busybox Unix Tools (https://github.com/rmyorston/busybox-w32)
 RUN mkdir C:\bin && `
     curl -fSsLo /bin/busybox64u.exe https://frippery.org/files/busybox/%BUSYBOX_VERSION% && `
