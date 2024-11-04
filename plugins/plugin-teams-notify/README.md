@@ -8,11 +8,11 @@ We use __file.exe__ tool for detect type mime from <https://gnuwin32.sourceforge
 
 ## Settings
 
-| Settings Name | Default | Description               |
-| ------------- | ------- | ------------------------- |
-| `url`        | _none_  | Teams Webhook URL |
-| `private_forge`    | _false_  | Set this to true if your forge is not accessible to the world |
-| `debug` | _false_ | Enable Debug mode |
+| Settings Name   | Default | Description                                                   |
+| --------------- | ------- | ------------------------------------------------------------- |
+| `url`           | _none_  | Teams Webhook URL                                             |
+| `private_forge` | _false_ | Set this to true if your forge is not accessible to the world |
+| `debug`         | _false_ | Enable Debug mode                                             |
 
 ## Pipeline Usage
 
@@ -26,11 +26,11 @@ steps:
         from_secret: teams_webhook
     when:
       - status: [success, failure]
-        event: tag
+        event: [push, tag]
 ...
 ```
 
-## Teams result
+## Result
 
 * Success Build Notifcation
 
