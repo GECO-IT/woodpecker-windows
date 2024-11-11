@@ -6,7 +6,7 @@ services:
   ##
   # Woodpecker Agent
   ##
-  agent:
+  agent-2.7.3:
     image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_VERSION}
     build:
       context: ../agent/backend-docker
@@ -14,6 +14,16 @@ services:
       args:
         WOODPECKER_AGENT_VERSION: ${AGENT_VERSION}
         WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_VERSION_SHA256}
+    platform: windows/amd64
+
+  agent-2.6.0:
+    image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_OLD_VERSION}
+    build:
+      context: ../agent/backend-docker
+      dockerfile: Dockerfile.Windows.old
+      args:
+        WOODPECKER_AGENT_VERSION: ${AGENT_OLD_VERSION}
+        WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_OLD_VERSION_SHA256}
     platform: windows/amd64
 
   ##
@@ -76,40 +86,4 @@ services:
       args:
         PLUGIN_VERSION: ${PLUGIN_GIT_VERSION}
         PLUGIN_VERSION_SHA256: ${PLUGIN_GIT_VERSION_SHA256}
-    platform: windows/amd64
-
-  plugin-gitea-package:
-    image: ${DOCKER_REGISTRY}/woodpecker-gitea-package-plugin:ltsc2022
-    build:
-      context: ../plugins/plugin-gitea-package
-      dockerfile: Dockerfile.Windows
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
-    platform: windows/amd64
-
-  plugin-teams-notify:
-    image: ${DOCKER_REGISTRY}/woodpecker-teams-notify-plugin:ltsc2022
-    build:
-      context: ../plugins/plugin-teams-notify
-      dockerfile: Dockerfile.Windows
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
-    platform: windows/amd64
-
-  plugin-git-basic-changelog:
-    image: ${DOCKER_REGISTRY}/woodpecker-git-basic-changelog-plugin:ltsc2022
-    build:
-      context: ../plugins/plugin-git-basic-changelog
-      dockerfile: Dockerfile.Windows
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
-    platform: windows/amd64
-
-  plugin-harbor-label:
-    image: ${DOCKER_REGISTRY}/woodpecker-harbor-label-plugin:ltsc2022
-    build:
-      context: ../plugins/plugin-harbor-label
-      dockerfile: Dockerfile.Windows
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
     platform: windows/amd64

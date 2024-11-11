@@ -9,20 +9,21 @@ when:
     - push
 
 depends_on:
-  - linux-build-and-push
   - windows-build-and-push
 
 matrix:
   include:
     - image: woodpecker-agent
       version: 2.7.3
+    - image: woodpecker-agent
+      version: 2.6.0
     - image: woodpecker-git-plugin
       version: latest
     - image: woodpecker-windows-base
       version: latest
 
 steps:
-  - name: Adding docker-hub Harbor label
+  - name: Add \'docker-hub\' label
     image: registry.geco-it.net/woodpecker/woodpecker-harbor-label-plugin
     settings:
       DOCKER_REGISTRY:

@@ -20,7 +20,7 @@ steps:
     commands:
       - cd ./build
       - cp .env.sample .env
-      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY};" -i .env
+      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY}/${CI_REPO_OWNER};" -i .env
     when:
       event: push
 
@@ -36,12 +36,12 @@ steps:
     commands:
       - cd ./build
       - cp .env.sample .env
-      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY};" -i .env
+      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY}/${CI_REPO_OWNER};" -i .env
       - echo "$${DOCKER_REGISTRY_PASSWORD}" | docker login $${DOCKER_REGISTRY} --username $${DOCKER_REGISTRY_USERNAME} --password-stdin
     when:
       event: tag
 
-  - name: build docker ${image} image
+  - name: build
     image: bash.exe
     commands:
       - cd ./build
@@ -49,7 +49,7 @@ steps:
     when:
       event: [push, tag]
 
-  - name: push docker ${image}
+  - name: push
     image: bash.exe
     commands:
       - cd ./build

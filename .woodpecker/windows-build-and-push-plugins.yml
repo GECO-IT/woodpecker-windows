@@ -3,9 +3,6 @@ labels:
   platform: windows/amd64
   backend: local
 
-depends_on:
-  - windows-build-and-push-base
-
 matrix:
   plugin:
     - git
@@ -19,15 +16,7 @@ steps:
     commands:
       - cd ./build
       - cp .env.sample .env
-      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY};" -i .env
-    when:
-      event: push
-
-  - name: build docker ${plugin}-plugin
-    image: bash.exe
-    commands:
-      - cd ./build
-      - docker-compose build plugin-${plugin}
+      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY}/${CI_REPO_OWNER};" -i .env
     when:
       event: push
 
@@ -43,12 +32,20 @@ steps:
     commands:
       - cd ./build
       - cp .env.sample .env
-      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY};" -i .env
+      - sed -e "s;^DOCKER_REGISTRY=.*;DOCKER_REGISTRY=$${DOCKER_REGISTRY}/${CI_REPO_OWNER};" -i .env
       - echo "$${DOCKER_REGISTRY_PASSWORD}" | docker login $${DOCKER_REGISTRY} --username $${DOCKER_REGISTRY_USERNAME} --password-stdin
     when:
       event: tag
 
-  - name: push docker ${plugin}-plugin
+  - name: build
+    image: bash.exe
+    commands:
+      - cd ./build
+      - docker-compose build plugin-${plugin}
+    when:
+      event: [push, tag]
+
+  - name: push
     image: bash.exe
     commands:
       - cd ./build
