@@ -7,8 +7,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022
 ARG BUSYBOX_VERSION=busybox-w64u-FRP-5467-g9376eebd8.exe `
     BUSYBOX_VERSION_SHA256=a78891d1067c6cd36c9849754d7be0402aae1bc977758635c27911fd7c824f6b
 
-LABEL architecture="x86_64" `
-      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-windows-base" `
       vendor="Geco-iT"
 
@@ -24,6 +23,16 @@ RUN mkdir C:\bin && `
 
 # Add C:\bin to System Path
 RUN setx /m PATH "C:\\bin;%path%"
+
+# Visual Studio 2022 Build Tools
+ARG VS_BUILD_TOOLS_URL="https://aka.ms/vs/17/release/vs_buildtools.exe"
+RUN curl -fSsLo vs_buildtools.exe "%VS_BUILD_TOOLS_URL%" && `
+    (start /w vs_buildtools.exe --quiet --wait --norestart --nocache --downloadThenInstall --includeRecommended `
+     --add Microsoft.VisualStudio.Workload.VCTools `
+     --add Microsoft.VisualStudio.Workload.MSBuildTools `
+     || IF "%ERRORLEVEL%"=="3010" EXIT 0)
+RUN rmdir /S /Q "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer" && `
+    del /q vs_buildtools.exe appverifUI.dll vfcompat.dll
 
 # Install last Chocolatey (https://docs.chocolatey.org/en-us/choco/setup)
 RUN powershell -Command `

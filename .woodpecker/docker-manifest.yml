@@ -1,0 +1,37 @@
+---
+labels:
+  platform: linux/amd64
+  backend: docker
+
+when:
+  event:
+    - tag
+
+depends_on:
+  - linux-build-and-push
+  - windows-build-and-push
+
+matrix:
+  plugin:
+    - git-basic-changelog
+    - teams-notify
+    - gitea-package
+    - harbor-label
+
+steps:
+  - name: docker manifest ${plugin} plugin
+    image: docker:27-cli
+    environment:
+      DOCKER_REGISTRY:
+        from_secret: DOCKER_REGISTRY
+      DOCKER_USERNAME:
+        from_secret: DOCKER_REGISTRY_USERNAME
+      DOCKER_PASSWORD:
+        from_secret: DOCKER_REGISTRY_PASSWORD
+    commands:
+      - echo "Create docker manifest for windows and linux image..."
+      - echo $${DOCKER_PASSWORD} | docker login --username $${DOCKER_USERNAME} --password-stdin $${DOCKER_REGISTRY}
+      - docker manifest create $${DOCKER_REGISTRY}/woodpecker-${plugin}-plugin:latest
+                        --amend $${DOCKER_REGISTRY}/woodpecker-${plugin}-plugin:ltsc2022
+                        --amend $${DOCKER_REGISTRY}/woodpecker-${plugin}-plugin:linux
+      - docker manifest push --purge $${DOCKER_REGISTRY}/woodpecker-${plugin}-plugin:latest

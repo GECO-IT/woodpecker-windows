@@ -1,4 +1,4 @@
-# Woodpecker-windows [![status-badge](https://ci.cereg.com/api/badges/62/status.svg)](https://ci.cereg.com/repos/62)
+# Woodpecker-windows [![status-badge](https://ci.geco-it.net/api/badges/6/status.svg)](https://ci.geco-it.net/repos/6)
 
 All stuff for use [Woodpecker CI](https://woodpecker-ci.org) on Windows
 
@@ -10,6 +10,8 @@ All stuff for use [Woodpecker CI](https://woodpecker-ci.org) on Windows
     - [Backend Docker](#backend-docker)
     - [Backend Local](#backend-local)
   - [Plugins Usage](#plugins-usage)
+  - [License](#license)
+  - [Author Information](#author-information)
 
 ## Install Woodpecker Agent
 
@@ -61,8 +63,16 @@ steps:
 ## Plugins Usage
 
 - [git](./plugins/plugin-git/README.md)
-- [git-basic-changelog](./plugins/plugin-git-basic-changelog/README.md)
-- [gitea-package](./plugins/plugin-gitea-package/README.md)
-- [teams-notify](./plugins/plugin-teams-notify/README.md)
 - [drone-docker](./plugins/plugin-drone-docker/README.md)
 - [drone-s3](./plugins/plugin-drone-s3/README.md)
+
+## License
+
+GPLv3+
+
+## Author Information
+
+This Windows port was created in 2024 by Cyril DUCHENOY, CEO of [Geco-iT SARL](https://www.geco-it.fr).
+
+> **Note**
+> Read-only source code mirror of Geco-iT Open Source projects.

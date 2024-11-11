@@ -10,10 +10,10 @@ services:
     image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_VERSION}
     build:
       context: ../agent/backend-docker
-      # build: release windows binary in zip file not tar.gz (view #3590)
-      dockerfile: Dockerfile.Windows.old  # Dockerfile.Windows (version >= v2.7.0)
+      dockerfile: Dockerfile.Windows
       args:
         WOODPECKER_AGENT_VERSION: ${AGENT_VERSION}
+        WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_VERSION_SHA256}
     platform: windows/amd64
 
   ##
@@ -75,10 +75,11 @@ services:
       dockerfile: Dockerfile.Windows
       args:
         PLUGIN_VERSION: ${PLUGIN_GIT_VERSION}
+        PLUGIN_VERSION_SHA256: ${PLUGIN_GIT_VERSION_SHA256}
     platform: windows/amd64
 
   plugin-gitea-package:
-    image: ${DOCKER_REGISTRY}/woodpecker-gitea-package-plugin:latest
+    image: ${DOCKER_REGISTRY}/woodpecker-gitea-package-plugin:ltsc2022
     build:
       context: ../plugins/plugin-gitea-package
       dockerfile: Dockerfile.Windows
@@ -87,7 +88,7 @@ services:
     platform: windows/amd64
 
   plugin-teams-notify:
-    image: ${DOCKER_REGISTRY}/woodpecker-teams-notify-plugin:latest
+    image: ${DOCKER_REGISTRY}/woodpecker-teams-notify-plugin:ltsc2022
     build:
       context: ../plugins/plugin-teams-notify
       dockerfile: Dockerfile.Windows
@@ -96,9 +97,18 @@ services:
     platform: windows/amd64
 
   plugin-git-basic-changelog:
-    image: ${DOCKER_REGISTRY}/woodpecker-git-basic-changelog-plugin:latest
+    image: ${DOCKER_REGISTRY}/woodpecker-git-basic-changelog-plugin:ltsc2022
     build:
       context: ../plugins/plugin-git-basic-changelog
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+    platform: windows/amd64
+
+  plugin-harbor-label:
+    image: ${DOCKER_REGISTRY}/woodpecker-harbor-label-plugin:ltsc2022
+    build:
+      context: ../plugins/plugin-harbor-label
       dockerfile: Dockerfile.Windows
       args:
         DOCKER_REGISTRY: ${DOCKER_REGISTRY}

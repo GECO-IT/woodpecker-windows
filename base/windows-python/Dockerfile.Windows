@@ -6,8 +6,7 @@ FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
 
 ARG PYTHON_VERSION=311
 
-LABEL architecture="x86_64" `
-      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-windows-python" `
       vendor="Geco-iT"
 

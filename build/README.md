@@ -98,6 +98,12 @@ C:\> docker-compose.exe build plugin-git-basic-changelog
 C:\> docker-compose.exe build plugin-teams-notify
 ```
 
+- Woodpecker Windows Harbor Label Plugin
+
+```bash
+C:\> docker-compose.exe build plugin-teams-notify
+```
+
 ## Push all images to your registry
 
 ```bash

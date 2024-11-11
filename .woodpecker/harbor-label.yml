@@ -1,0 +1,38 @@
+---
+labels:
+  platform: linux/amd64
+  backend: docker
+
+when:
+  event:
+    - tag
+    - push
+
+depends_on:
+  - linux-build-and-push
+  - windows-build-and-push
+
+matrix:
+  include:
+    - image: woodpecker-agent
+      version: 2.7.3
+    - image: woodpecker-git-plugin
+      version: latest
+    - image: woodpecker-windows-base
+      version: latest
+
+steps:
+  - name: Adding docker-hub Harbor label
+    image: registry.geco-it.net/woodpecker/woodpecker-harbor-label-plugin
+    settings:
+      DOCKER_REGISTRY:
+        from_secret: DOCKER_REGISTRY
+      DOCKER_USERNAME:
+        from_secret: DOCKER_REGISTRY_USERNAME
+      DOCKER_PASSWORD:
+        from_secret: DOCKER_REGISTRY_PASSWORD
+      debug: true
+      label: docker-hub
+      project: woodpecker
+      image: ${image}
+      tag: ${version}

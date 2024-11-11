@@ -9,11 +9,15 @@
 
 FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
 
-# Get version from https://github.com/woodpecker-ci/woodpecker/tags
-ARG WOODPECKER_AGENT_VERSION=v1.0.5
+# Busybox Unicode https://github.com/rmyorston/busybox-w32
+ARG BUSYBOX_VERSION=busybox-w64u-FRP-5467-g9376eebd8.exe `
+    BUSYBOX_VERSION_SHA256=a78891d1067c6cd36c9849754d7be0402aae1bc977758635c27911fd7c824f6b
 
-LABEL architecture="x86_64" `
-      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+# Woodpecker Windows Agent https://github.com/woodpecker-ci/woodpecker/tags
+ARG WOODPECKER_AGENT_VERSION=v2.6.0 `
+    WOODPECKER_AGENT_VERSION_SHA256=1521e48760633818cbd3d5a1af325bb66383f80482b312f8ad666e5231bc702e
+
+LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-agent" `
       vendor="Geco-iT"
 
@@ -21,20 +25,25 @@ SHELL ["cmd", "/S", "/C"]
 
 USER ContainerAdministrator
 
-# Install Busybox Unix Tools
+# Install Busybox Unix Tools (https://github.com/rmyorston/busybox-w32)
 RUN mkdir C:\bin && `
-    curl -fSLo /bin/busybox.exe https://frippery.org/files/busybox/busybox64.exe && `
-    for /f "tokens=*" %i in ('C:\bin\busybox --list') do mklink C:\bin\%i.exe C:\bin\busybox.exe
+    curl -fSsLo /bin/busybox64u.exe https://frippery.org/files/busybox/%BUSYBOX_VERSION% && `
+    /bin/busybox64u --install -s /bin && `
+    /bin/echo "%BUSYBOX_VERSION_SHA256% /bin/busybox64u.exe" > SHA256SUM && `
+    /bin/sha256sum -c SHA256SUM && `
+    /bin/rm -f SHA256SUM
 
 # Add C:\bin to System Path
-RUN setx path "C:\\bin;%path%"
+RUN setx /m PATH "C:\\bin;%path%"
 
 # Install Woodpecker Windows Agent
 RUN mkdir C:\etc\ssl\certs `
-		  C:\etc\woodpecker && `
-    curl -fSLo /woodpecker-agent.tar.gz https://github.com/woodpecker-ci/woodpecker/releases/download/%WOODPECKER_AGENT_VERSION%/woodpecker-agent_windows_amd64.tar.gz && `
-    tar -xvzf /woodpecker-agent.tar.gz -C C:\bin && `
-    rm -f /woodpecker-agent.tar.gz
+          C:\etc\woodpecker && `
+    curl -fSsLo woodpecker-agent.tar.gz https://github.com/woodpecker-ci/woodpecker/releases/download/%WOODPECKER_AGENT_VERSION%/woodpecker-agent_windows_amd64.tar.gz && `
+    /bin/tar -xvzf woodpecker-agent.tar.gz -C C:\bin && `
+    /bin/echo "%WOODPECKER_AGENT_VERSION_SHA256% woodpecker-agent.tar.gz" > SHA256SUM && `
+    /bin/sha256sum -c SHA256SUM && `
+    /bin/rm -f woodpecker-agent.tar.gz SHA256SUM
 
 # Internal setting do NOT change! Signals that woodpecker is running inside a container
 ENV GODEBUG=netdns=go `

@@ -11,8 +11,7 @@ ARG BUSYBOX_VERSION=busybox-w64u-FRP-5467-g9376eebd8.exe `
 ARG WOODPECKER_AGENT_VERSION=v2.7.2 `
     WOODPECKER_AGENT_VERSION_SHA256=2fea1789f90b35a0b3d8f171e7388c8bbba30b9ec914e1ab6978bf4558fd9a68
 
-LABEL architecture="x86_64" `
-      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-agent" `
       vendor="Geco-iT"
 
@@ -32,15 +31,13 @@ RUN mkdir C:\bin && `
 RUN setx /m PATH "C:\\bin;%path%"
 
 # Install Woodpecker Windows Agent
-RUN /bin/mkdir C:\etc\ssl\certs `
-		  C:\etc\woodpecker && `
+RUN mkdir C:\etc\ssl\certs `
+          C:\etc\woodpecker && `
     curl -fSsLo woodpecker-agent.zip https://github.com/woodpecker-ci/woodpecker/releases/download/%WOODPECKER_AGENT_VERSION%/woodpecker-agent_windows_amd64.zip && `
     /bin/unzip -d /bin woodpecker-agent.zip && `
     /bin/echo "%WOODPECKER_AGENT_VERSION_SHA256% woodpecker-agent.zip" > SHA256SUM && `
     /bin/sha256sum -c SHA256SUM && `
     /bin/rm -f woodpecker-agent.zip SHA256SUM
-
-USER ContainerUser
 
 # Internal setting do NOT change! Signals that woodpecker is running inside a container
 ENV GODEBUG=netdns=go `

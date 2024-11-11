@@ -4,8 +4,7 @@
 ARG DOCKER_REGISTRY
 FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
 
-LABEL architecture="x86_64" `
-      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-windows-r" `
       vendor="Geco-iT"
 

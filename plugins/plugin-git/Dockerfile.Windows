@@ -15,8 +15,7 @@ ARG PLUGIN_VERSION=2.6.0 `
 ARG GIT_VERSION=2.47.0 `
     GIT_VERSION_SHA256=b6ca6dcd5c818396faa57e06e10489aed3e16396317475ca8e88e30e4eb2e3c5
 
-LABEL architecture="x86_64" `
-      maintainer="Geco-iT Team <contact@geco-it.fr>" `
+LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-plugin-git" `
       vendor="Geco-iT"
 

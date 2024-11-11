@@ -1,0 +1,60 @@
+---
+labels:
+  platform: linux/amd64
+  backend: docker
+
+matrix:
+  plugin:
+    - git-basic-changelog
+    - teams-notify
+    - gitea-package
+    - harbor-label
+
+steps:
+  - name: security-build
+    image: woodpeckerci/plugin-docker-buildx:5
+    settings:
+      # for cache on tag event
+      registry: registry.geco-it.net
+      repo: registry.geco-it.net/woodpecker/woodpecker-${plugin}-plugin
+      dry-run: true
+      dockerfile: ./plugins/plugin-${plugin}/Dockerfile
+      context: ./plugins/plugin-${plugin}
+      output: type=oci,dest=oci/${CI_REPO_NAME}-${plugin},tar=false
+    when:
+      event: [push, tag]
+
+  - name: security-scan
+    image: docker.io/aquasec/trivy
+    depends_on: security-build
+    environment:
+      TRIVY_DISABLE_VEX_NOTICE: true
+      TRIVY_EXIT_CODE: 1
+      TRIVY_IGNORE_UNFIXED: true
+      TRIVY_NO_PROGRESS: true
+      TRIVY_SEVERITY: HIGH,CRITICAL
+      TRIVY_TIMEOUT: 15m
+      TRIVY_DB_REPOSITORY: docker.io/aquasec/trivy-db:2
+    commands:
+      - trivy -v
+      - trivy image --input oci/${CI_REPO_NAME}-${plugin}
+    when:
+      event: [push, tag]
+
+  - name: build docker ${plugin}-plugin
+    image: woodpeckerci/plugin-docker-buildx:5
+    settings:
+      registry: registry.geco-it.net
+      repo: registry.geco-it.net/woodpecker/woodpecker-${plugin}-plugin
+      username:
+        from_secret: DOCKER_REGISTRY_USERNAME
+      password:
+        from_secret: DOCKER_REGISTRY_PASSWORD
+      dockerfile: ./plugins/plugin-${plugin}/Dockerfile
+      context: ./plugins/plugin-${plugin}
+      # remove auto manifest created
+      provenance: false
+      tags:
+        - linux
+    when:
+      event: tag

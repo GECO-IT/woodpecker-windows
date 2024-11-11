@@ -7,5 +7,6 @@
 sleep 60
 sc start docker
 sleep 30
-docker-compose.exe -f C:\ProgramData\woodpecker-docker\docker-compose.yml down
-docker-compose.exe -f C:\ProgramData\woodpecker-docker\docker-compose.yml up -d
+cd C:\ProgramData\woodpecker-docker
+docker-compose.exe down
+docker-compose.exe up -d
