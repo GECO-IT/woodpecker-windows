@@ -26,7 +26,7 @@ matrix:
 
 steps:
   - name: Add 'docker-hub' label
-    image: registry.geco-it.net/woodpecker/woodpecker-harbor-label-plugin
+    image: registry.geco-it.net/${CI_REPO_OWNER,,}/woodpecker-harbor-label-plugin
     settings:
       DOCKER_REGISTRY:
         from_secret: DOCKER_REGISTRY
@@ -36,6 +36,6 @@ steps:
         from_secret: DOCKER_REGISTRY_PASSWORD
       debug: true
       label: docker-hub
-      project: woodpecker
+      project: ${CI_REPO_OWNER,,}
       image: ${image}
       tag: ${version}
