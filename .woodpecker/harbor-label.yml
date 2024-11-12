@@ -6,7 +6,6 @@ labels:
 when:
   event:
     - tag
-    - push
 
 depends_on:
   - windows-build-and-push
@@ -26,13 +25,13 @@ matrix:
 
 steps:
   - name: Add 'docker-hub' label
-    image: registry.geco-it.net/${CI_REPO_OWNER,,}/woodpecker-harbor-label-plugin
+    image: ${DOCKER_INTERNAL_REGISTRY}/${CI_REPO_OWNER,,}/woodpecker-harbor-label-plugin
     settings:
-      DOCKER_REGISTRY:
+      registry:
         from_secret: DOCKER_REGISTRY
-      DOCKER_USERNAME:
+      username:
         from_secret: DOCKER_REGISTRY_USERNAME
-      DOCKER_PASSWORD:
+      password:
         from_secret: DOCKER_REGISTRY_PASSWORD
       debug: true
       label: docker-hub
