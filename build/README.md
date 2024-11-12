@@ -55,7 +55,7 @@ C:\> docker-compose.exe build agent
 - Woodpecker Windows Base image
 
 ```bash
-C:\> docker-compose.exe build base
+C:\> docker-compose.exe build base --memory 2GB
 ```
 
 - Woodpecker Windows Git Plugin
