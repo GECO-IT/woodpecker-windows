@@ -14,11 +14,11 @@ SHELL ["cmd", "/S", "/C"]
 
 # Install Python
 RUN choco install -y python%PYTHON_VERSION% --params "/InstallDir:C:\Python /NoLockdown" && `
-    rmdir /S /Q C:\tmp\cache
-
-# Upgrade pip
-RUN python.exe -m pip install --upgrade pip && `
-    pip install --upgrade setuptools
+    rmdir /S /Q C:\tmp\cache && `
+    `
+    # Upgrade
+    python.exe -m pip install --no-cache-dir --upgrade pip && `
+    pip install --no-cache-dir --upgrade setuptools
 
 SHELL ["bash.exe", "-c"]
 

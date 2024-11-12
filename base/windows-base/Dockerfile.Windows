@@ -19,10 +19,10 @@ RUN mkdir C:\bin && `
     /bin/busybox64u --install -s /bin && `
     /bin/echo "%BUSYBOX_VERSION_SHA256% /bin/busybox64u.exe" > SHA256SUM && `
     /bin/sha256sum -c SHA256SUM && `
-    /bin/rm -f SHA256SUM
-
-# Add C:\bin to System Path
-RUN setx /m PATH "C:\\bin;%path%"
+    /bin/rm -f SHA256SUM `
+    `
+    # Add C:\bin to System Path
+    && setx /m PATH "C:\\bin;%path%"
 
 # Visual Studio 2022 Build Tools (https://learn.microsoft.com/fr-fr/visualstudio/install/build-tools-container?view=vs-2022)
 ARG VS_BUILD_TOOLS_URL="https://aka.ms/vs/17/release/vs_buildtools.exe"
@@ -30,7 +30,7 @@ RUN curl -fSsLo vs_buildtools.exe "%VS_BUILD_TOOLS_URL%" && `
     (start /w vs_buildtools.exe --quiet --wait --norestart --nocache `
         --installPath "C:\Microsoft-Visual-Studio\2022\BuildTools" `
         --add Microsoft.VisualStudio.Workload.VCTools `
-		--add Microsoft.VisualStudio.Workload.MSBuildTools `
+        --add Microsoft.VisualStudio.Workload.MSBuildTools `
         --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
         --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
         --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
@@ -44,10 +44,10 @@ RUN curl -fSsLo vs_buildtools.exe "%VS_BUILD_TOOLS_URL%" && `
 RUN powershell -Command `
      "Set-ExecutionPolicy Bypass -Scope Process -Force; `
       [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
-      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
-
-# Configure Chocolatey
-RUN choco config set cachelocation C:\tmp\cache
+      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" `
+    `
+    # Configure
+    && choco config set cachelocation C:\tmp\cache
 
 SHELL ["bash.exe", "-c"]
 
