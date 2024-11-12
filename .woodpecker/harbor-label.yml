@@ -8,6 +8,7 @@ when:
     - tag
 
 depends_on:
+  - lint
   - windows-build-and-push
 
 skip_clone: true
@@ -15,9 +16,9 @@ skip_clone: true
 matrix:
   include:
     - image: woodpecker-agent
-      version: 2.7.3
+      version: v2.7.3
     - image: woodpecker-agent
-      version: 2.6.0
+      version: v2.6.0
     - image: woodpecker-git-plugin
       version: latest
     - image: woodpecker-windows-base
@@ -26,6 +27,7 @@ matrix:
 steps:
   - name: Add 'docker-hub' label
     image: ${DOCKER_INTERNAL_REGISTRY}/${CI_REPO_OWNER,,}/woodpecker-harbor-label-plugin
+    pull: true
     settings:
       registry:
         from_secret: DOCKER_REGISTRY

@@ -1,0 +1,8 @@
+##
+# shellckeck config
+##
+
+# example
+#disable=SC1000,SC1010  # suppress issues SC1000 and SC1010
+#disable=SC2000-SC2200  # suppress range SC2000 to SC2200
+

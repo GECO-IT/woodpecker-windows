@@ -3,6 +3,9 @@ labels:
   platform: windows/amd64
   backend: local
 
+depends_on:
+  - lint
+
 matrix:
   plugin:
     - git

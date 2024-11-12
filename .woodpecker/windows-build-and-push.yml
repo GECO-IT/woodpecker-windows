@@ -4,6 +4,7 @@ labels:
   backend: local
 
 depends_on:
+  - lint
   - windows-build-and-push-plugins
   - windows-build-and-push-base
 
