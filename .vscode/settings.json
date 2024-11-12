@@ -1,71 +1,71 @@
 {
-  "files.encoding": "utf8",
-  "files.eol": "auto",
-  "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
-  "editor.renderWhitespace": "boundary",
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true,
-  "editor.rulers": [
-    116
-  ],
-  // powershell general
-  "powershell.startAutomatically": true,
-  "powershell.enableProfileLoading": true,
-  "powershell.scriptAnalysis.enable": true,
-  // powershell code Formatting
-  "powershell.codeFormatting.openBraceOnSameLine": true,
-  "powershell.codeFormatting.newLineAfterOpenBrace": true,
-  "powershell.codeFormatting.newLineAfterCloseBrace": true,
-  "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
-  "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
-  "powershell.codeFormatting.whitespaceAroundOperator": true,
-  "powershell.codeFormatting.whitespaceAfterSeparator": true,
-  "powershell.codeFormatting.ignoreOneLineBlock": true,
-  "powershell.codeFormatting.alignPropertyValuePairs": true,
-  // cSpell settings for custom dictionary
-  "cSpell.enabled": true,
-  "cSpell.caseSensitive": false,
-  "cSpell.maxNumberOfProblems": 100,
-  "cSpell.numSuggestions": 8,
-  "cSpell.minWordLength": 3,
-  "cSpell.allowCompoundWords": false,
-  "cSpell.ignorePaths": [
-    "package-lock.json",
-    "node_modules",
-    "vscode-extension",
-    ".git/objects",
-    ".vscode",
-    ".vscode-insiders"
-  ],
-  "cSpell.enabledLanguageIds": [
-    "c",
-    "cpp",
-    "csharp",
-    "go",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "latex",
-    "markdown",
-    "php",
-    "plaintext",
-    "powershell",
-    "python",
-    "text",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-    "yml"
-  ],
-  "cSpell.language": "en-US,fr-FR",
-  "cSpell.customDictionaries": {
-    "project-words": {
-      "name": "project-words",
-      "path": "${workspaceRoot}/.vscode/dictionaries/project-words.txt",
-      "description": "Words used in this project",
-      "addWords": true
-    },
-    "custom": true
-  }
+    "files.encoding": "utf8",
+    "files.eol": "auto",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.formatOnSave": false,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+        116
+    ],
+    // powershell general
+    "powershell.startAutomatically": true,
+    "powershell.enableProfileLoading": true,
+    "powershell.scriptAnalysis.enable": true,
+    // powershell code Formatting
+    "powershell.codeFormatting.openBraceOnSameLine": true,
+    "powershell.codeFormatting.newLineAfterOpenBrace": true,
+    "powershell.codeFormatting.newLineAfterCloseBrace": true,
+    "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+    "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+    "powershell.codeFormatting.whitespaceAroundOperator": true,
+    "powershell.codeFormatting.whitespaceAfterSeparator": true,
+    "powershell.codeFormatting.ignoreOneLineBlock": true,
+    "powershell.codeFormatting.alignPropertyValuePairs": true,
+    // cSpell settings for custom dictionary
+    "cSpell.enabled": true,
+    "cSpell.caseSensitive": false,
+    "cSpell.maxNumberOfProblems": 100,
+    "cSpell.numSuggestions": 8,
+    "cSpell.minWordLength": 3,
+    "cSpell.allowCompoundWords": false,
+    "cSpell.ignorePaths": [
+        "package-lock.json",
+        "node_modules",
+        "vscode-extension",
+        ".git/objects",
+        ".vscode",
+        ".vscode-insiders"
+    ],
+    "cSpell.enabledLanguageIds": [
+        "c",
+        "cpp",
+        "csharp",
+        "go",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "latex",
+        "markdown",
+        "php",
+        "plaintext",
+        "powershell",
+        "python",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+        "yml"
+    ],
+    "cSpell.language": "en-US,fr-FR",
+    "cSpell.customDictionaries": {
+        "project-words": {
+            "name": "project-words",
+            "path": "${workspaceRoot}/.vscode/dictionaries/project-words.txt",
+            "description": "Words used in this project",
+            "addWords": true
+        },
+        "custom": true
+    }
 }
