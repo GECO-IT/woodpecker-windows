@@ -13,7 +13,7 @@ matrix:
     - 2.6.0
 
 steps:
-  - name: configure environment
+  - name: configure
     image: bash.exe
     environment:
       DOCKER_REGISTRY:
@@ -25,7 +25,7 @@ steps:
     when:
       event: push
 
-  - name: configure environment
+  - name: configure
     image: bash.exe
     environment:
       DOCKER_REGISTRY:
@@ -58,7 +58,7 @@ steps:
     when:
       event: tag
 
-  - name: clean environment
+  - name: clean
     image: bash.exe
     commands:
       - echo "Remove all stopped containers..."

@@ -8,7 +8,7 @@ matrix:
     - git
 
 steps:
-  - name: configure environment
+  - name: configure
     image: bash.exe
     environment:
       DOCKER_REGISTRY:
@@ -20,7 +20,7 @@ steps:
     when:
       event: push
 
-  - name: configure environment
+  - name: configure
     image: bash.exe
     environment:
       DOCKER_REGISTRY:

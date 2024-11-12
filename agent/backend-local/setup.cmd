@@ -14,7 +14,8 @@ set SERVICE_NAME=woodpecker-agent
 set WOODPECKER_SERVER="woodpecker.lan.xxxxx:39443"
 set WOODPECKER_HOSTNAME="woodpecker-agentxxx"
 set WOODPECKER_AGENT_SECRET="xxxxx"
-set WOODPECKER_MAX_WORKFLOWS=2
+:: > 1 matrix failed view issues #4362
+set WOODPECKER_MAX_WORKFLOWS=1
 :: filter: https://woodpecker-ci.org/docs/administration/agent-config#woodpecker_filter_labels
 set WOODPECKER_FILTER_LABELS=""
 

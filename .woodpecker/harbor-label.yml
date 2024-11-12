@@ -11,6 +11,8 @@ when:
 depends_on:
   - windows-build-and-push
 
+skip_clone: true
+
 matrix:
   include:
     - image: woodpecker-agent
@@ -23,7 +25,7 @@ matrix:
       version: latest
 
 steps:
-  - name: Add \'docker-hub\' label
+  - name: Add 'docker-hub' label
     image: registry.geco-it.net/woodpecker/woodpecker-harbor-label-plugin
     settings:
       DOCKER_REGISTRY:
