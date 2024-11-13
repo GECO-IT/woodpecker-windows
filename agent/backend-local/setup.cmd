@@ -30,8 +30,9 @@ set PLUGIN_GIT_VERSION=2.6.0
 
 :: Install basic unix tools
 mkdir bin
-curl -fSLo ./bin/busybox.exe https://frippery.org/files/busybox/busybox64.exe
-for /f "tokens=*" %%i in ('.\bin\busybox --list') do mklink %SETUP_PATH%\bin\%%i.exe %SETUP_PATH%\bin\busybox.exe
+curl -fSsLo ./bin/busybox64u.exe https://frippery.org/files/busybox/busybox64u.exe
+.\bin\busybox64u.exe --install -s %SETUP_PATH%\bin
+:: for /f "tokens=*" %%i in ('.\bin\busybox64u --list') do mklink %SETUP_PATH%\bin\%%i.exe %SETUP_PATH%\bin\busybox.exe
 
 :: Add .\bin to System Path
 rem setx /M PATH "%SETUP_PATH%\bin;%PATH%"

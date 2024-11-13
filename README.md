@@ -1,8 +1,10 @@
-# Woodpecker-windows [![status-badge](https://ci.geco-it.net/api/badges/6/status.svg)](https://ci.geco-it.net/repos/6)
+# Woodpecker-windows
+
+[![status-badge](https://ci.geco-it.net/api/badges/6/status.svg)](https://ci.geco-it.net/repos/6)
 
 All stuff for use [Woodpecker CI](https://woodpecker-ci.org) on Windows
 
-- [Woodpecker-windows ](#woodpecker-windows-)
+- [Woodpecker-windows](#woodpecker-windows)
   - [Install Woodpecker Agent](#install-woodpecker-agent)
     - [Docker Backend](#docker-backend)
     - [Local Backend](#local-backend)
@@ -68,7 +70,7 @@ steps:
 
 ## License
 
-GPLv3+
+Released under GPLv3+
 
 ## Author Information
 
