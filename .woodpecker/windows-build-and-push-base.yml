@@ -48,7 +48,8 @@ steps:
     image: bash.exe
     commands:
       - cd ./build
-      - docker-compose build ${image} --memory 2GB
+      #- docker-compose build ${image} --memory 2GB
+      - docker-compose build ${image}
     when:
       event: [push, tag]
 
