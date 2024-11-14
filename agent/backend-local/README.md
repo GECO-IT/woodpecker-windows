@@ -2,7 +2,7 @@
 
 ## Configuration
 
-1. Copy directory _**backend-local**_ to _**C:\ProgramData\woodpecker**_
+1. Copy directory _**backend-local**_ to _**C:\ProgramData\woodpecker-local**_
 2. Edit global vars _**setup.cmd**_
 
 ```bash
@@ -18,17 +18,54 @@ PLUGIN_GIT_VERSION="2.6.0"
 
 ## Setup
 
-* Run installer
+- Run installer
 
 ```bash
-C:\ProgramData\woodpecker> .\setup.cmd
+C:\ProgramData\woodpecker-local> .\setup.cmd
 ```
 
-* Add Woodpecker plugins executable to path
+- Add Woodpecker plugins executable to path
 
 ```bash
-C:\ProgramData\woodpecker> set SETUP_PATH="C:\ProgramData\woodpecker"
-C:\ProgramData\woodpecker> setx /M PATH "%SETUP_PATH%\bin;%PATH%"
+C:\ProgramData\woodpecker-local> set SETUP_PATH="C:\ProgramData\woodpecker-local"
+C:\ProgramData\woodpecker-local> setx /M PATH "%SETUP_PATH%\bin;%PATH%"
+```
+
+## Install & Configure git
+
+- Install Software Manager - Chocolatey
+
+```powershell
+# install
+PS C:\> Set-ExecutionPolicy Bypass -Scope Process -Force;
+PS C:\> [System.Net.PS ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+PS C:\> iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+# remember parameters on upgrade
+choco feature enable -n=useRememberedArgumentsForUpgrades
+```
+
+- Install GIT
+
+```bash
+C:\> choco install git -y --params "'/Symlinks /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration'"
+C:\> choco install poshgit
+```
+
+- GIT Authentification
+
+```bash
+C:\> mkdir c:\tmp
+C:\> cd C:\tmp
+C:\tmp> curl -fSSL -o pstools.zip https://download.sysinternals.com/files/PSTools.zip
+C:\tmp> unzip pstools.zip -d pstools
+C:\tmp> rm -f pstools.zip
+C:\tmp> .\pstools\psexec -i -s cmd.exe
+
+# open new cmd.exe in system user
+C:\Windows\system32> whoami
+nt authority\system
+C:\Windows\system32> git clone <REPO_TEST_URL>
 ```
 
 ## Pipeline Usage
@@ -43,7 +80,7 @@ steps:
 
   # example use minio command: mc.exe to upload file # mc.exe must be in $PATH
   s3-upload-mc:
-    image: powershell.exe
+    image: bash.exe
     secrets: [ bucket_name, access_key, secret_key ]
     environment:
       - S3_ENDPOINT=http://xxxx:9000

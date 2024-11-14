@@ -9,7 +9,7 @@
 :: path without space !
 set WOODPECKER_AGENT_VERSION=v2.6.0
 
-set SETUP_PATH="C:\ProgramData\woodpecker"
+set SETUP_PATH="C:\ProgramData\woodpecker-local"
 set SERVICE_NAME=woodpecker-agent
 set WOODPECKER_SERVER="woodpecker.lan.xxxxx:39443"
 set WOODPECKER_HOSTNAME="woodpecker-agentxxx"
