@@ -1,8 +1,10 @@
 # Woodpecker Windows Agent - Backend Local
 
+- Tested on Windows Server 2022 Core installation
+
 ## Configuration
 
-1. Copy directory _**backend-local**_ to _**C:\ProgramData\woodpecker-local**_
+1. Copy directory _**agent\backend-local**_ to _**C:\ProgramData\woodpecker-local**_
 2. Edit global vars _**setup.cmd**_
 
 ```bash
@@ -13,7 +15,7 @@ WOODPECKER_AGENT_SECRET="xxxxx"
 WOODPECKER_MAX_WORKFLOWS="2"
 WOODPECKER_FILTER_LABELS=""
 
-PLUGIN_GIT_VERSION="2.6.0"
+PLUGIN_Git_VERSION="2.6.0"
 ```
 
 ## Setup
@@ -45,14 +47,13 @@ PS C:\> iex ((New-Object System.Net.WebClient).DownloadString('https://chocolate
 choco feature enable -n=useRememberedArgumentsForUpgrades
 ```
 
-- Install GIT
+- Install Git
 
 ```bash
-C:\> choco install git -y --params "'/Symlinks /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration'"
-C:\> choco install poshgit
+C:\> choco install git -y --params "'/Symlinks /NoGuiHereIntegration'"
 ```
 
-- GIT Authentification
+- Git System User Authentification
 
 ```bash
 C:\> mkdir c:\tmp
@@ -79,7 +80,7 @@ labels:
 steps:
 
   # example use minio command: mc.exe to upload file # mc.exe must be in $PATH
-  s3-upload-mc:
+  - name: s3-upload-mc
     image: bash.exe
     secrets: [ bucket_name, access_key, secret_key ]
     environment:

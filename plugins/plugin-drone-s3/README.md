@@ -10,7 +10,7 @@
 - Get drone-s3.exe from docker image (or download it from <https://github.com/drone-plugins/drone-s3/releases>)
 
 ```bash
-C:\> cd C:\woodpecker-windows\agent\backend-local\bin
+C:\> cd C:\ProgramData\woodpecker-local\backend-local\bin
 
 C:\> docker create --name plugin plugins/s3
 
