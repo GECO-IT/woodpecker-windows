@@ -2,7 +2,7 @@
 # escape=`
 
 ARG DOCKER_REGISTRY
-FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+FROM ${DOCKER_REGISTRY}/woodpecker-windows-base-chocolatey-msvsbuild:latest
 
 ARG PYTHON_VERSION=311
 

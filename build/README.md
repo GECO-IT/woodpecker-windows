@@ -5,13 +5,13 @@
   - [Build](#build)
     - [All](#all)
     - [Mandatory](#mandatory)
-    - [Optionnal](#optionnal)
+    - [Optional](#optional)
   - [Push all images to your registry](#push-all-images-to-your-registry)
   - [Clean](#clean)
 
 ## Configuration
 
-Create _**.env**_ file
+Copy and Edit  _**.env.sample**_ to _**.env**_ file
 
 ```bash
 ##
@@ -22,7 +22,7 @@ DOCKER_REGISTRY=registry.xxx/woodpecker
 ##
 # Build Woodpecker Version: https://github.com/woodpecker-ci/woodpecker/tags
 ##
-AGENT_VERSION=v2.6.0 # max version on windows 
+AGENT_VERSION=v2.6.0 # max version on windows
 # view https://github.com/woodpecker-ci/woodpecker/pull/3933
 # with this commit error on volume mount
 
@@ -52,19 +52,21 @@ C:\> docker-compose.exe build
 C:\> docker-compose.exe build agent
 ```
 
-- Woodpecker Windows Base image
-
-```bash
-C:\> docker-compose.exe build base --memory 2GB
-```
-
 - Woodpecker Windows Git Plugin
 
 ```bash
 C:\> docker-compose.exe build plugin-git
 ```
 
-### Optionnal
+### Optional
+
+- Woodpecker Windows Base images
+
+```bash
+C:\> docker-compose.exe build base
+C:\> docker-compose.exe build base-chocolatey
+C:\> docker-compose.exe build base-chocolatey-msvsbuild # --memory 2GB
+```
 
 - Woodpecker Windows Python image
 
@@ -74,13 +76,7 @@ C:\> docker-compose.exe build python-3.11
 C:\> docker-compose.exe build python-3.10
 ```
 
-- Woodpecker Windows R-project image
-
-```bash
-C:\> docker-compose.exe build r-project
-```
-
-- Woodpecker Windows Gitea Package Plugin
+- Woodpecker Windows Gitea/Forgejo Package Plugin
 
 ```bash
 C:\> docker-compose.exe build plugin-gitea-package

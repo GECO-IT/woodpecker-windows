@@ -33,7 +33,21 @@ services:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
     build:
       context: ../base/windows-base
-      dockerfile: Dockerfile.Windows
+      dockerfile: Dockerfile.base.Windows
+    platform: windows/amd64
+
+  base-chocolatey:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-base-chocolatey:latest
+    build:
+      context: ../base/windows-base
+      dockerfile: Dockerfile.base-chocolatey.Windows
+    platform: windows/amd64
+
+  base-chocolatey-msvsbuild:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-base-chocolatey-msvsbuild:latest
+    build:
+      context: ../base/windows-base
+      dockerfile: Dockerfile.base-chocolatey-msvsbuild.Windows
     platform: windows/amd64
 
   python-3.12:
@@ -64,15 +78,6 @@ services:
       args:
         DOCKER_REGISTRY: ${DOCKER_REGISTRY}
         PYTHON_VERSION: 310
-    platform: windows/amd64
-
-  r-project:
-    image: ${DOCKER_REGISTRY}/woodpecker-windows-r:latest
-    build:
-      context: ../base/windows-r-project
-      dockerfile: Dockerfile.Windows
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
     platform: windows/amd64
 
   ##

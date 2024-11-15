@@ -23,6 +23,10 @@ matrix:
       version: latest
     - image: woodpecker-windows-base
       version: latest
+    - image: woodpecker-windows-base-chocolatey
+      version: latest
+    - image: woodpecker-windows-base-chocolatey-msvsbuild
+      version: latest
 
 steps:
   - name: Add 'docker-hub' label

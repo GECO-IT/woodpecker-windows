@@ -1,4 +1,6 @@
 amd64
+hadolint
 linux
 sed
+shellcheck
 woodpeckerci

@@ -1,13 +1,13 @@
 # Build agent from source
 
-* Documentation: <https://woodpecker-ci.org/docs/development/getting-started>
+- Documentation: <https://woodpecker-ci.org/docs/development/getting-started>
 
 ## Build agent from PR
 
 ```bash
 git clone https://github.com/6543-forks/woodpecker.git
 git checkout make-windows-container-work-again
-docker run -ti -v ${PWD}/pull4286:/src debian:bookworm
+docker run --rm -ti -v ${PWD}/pull4286:/src debian:bookworm
 
 # install prereq
 apt update
