@@ -3,7 +3,7 @@ version: "3.9"
 
 services:
   agent:
-    image: registry.geco-it.net/public/woodpecker-agent:v2.6.0
+    image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_VERSION}
     command: agent
     restart: always
     volumes:

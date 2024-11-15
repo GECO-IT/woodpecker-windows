@@ -43,7 +43,7 @@ curl -fSLo ./woodpecker-agent.tar.gz https://github.com/woodpecker-ci/woodpecker
 .\bin\tar.exe -xvzf ./woodpecker-agent.tar.gz -C .
 .\bin\rm.exe -f ./woodpecker-agent.tar.gz
 
-:: Woodpecker service
+:: Woodpecker service - https://nssm.cc/commands
 .\nssm.exe install %SERVICE_NAME% "%SETUP_PATH%\woodpecker-agent.exe"
 
 .\nssm.exe set %SERVICE_NAME% DisplayName "Geco-iT Woodpecker Agent"

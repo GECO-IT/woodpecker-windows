@@ -42,12 +42,12 @@ PS C:\> Invoke-WebRequest -UseBasicParsing -o install-docker-ce.ps1 `
   "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
 
 PS C:\> .\install-docker-ce.ps1 -DockerVersion "20.10.24"
-PS C:\> Remove-Item -Path ".\install-docker-ce.ps1" -Forcece.ps1" -Force
+PS C:\> Remove-Item -Path ".\install-docker-ce.ps1" -Force
 ```
 
 ### Install Docker Plugins
 
-- Docker Commpose
+- Docker Compose
 
 ```bash
 C:\> mkdir C:\ProgramData\docker\cli-plugins
@@ -77,7 +77,7 @@ View <https://mcr.microsoft.com/en-us/product/windows/servercore/about>
 ```bash
 C:\> docker image pull mcr.microsoft.com/windows/servercore:ltsc2019
 C:\> docker image pull mcr.microsoft.com/windows/nanoserver:ltsc2019
-# optionnal: docker pull mcr.microsoft.com/windows/server:ltsc2019
+# optional: docker pull mcr.microsoft.com/windows/server:ltsc2019
 ```
 
 - Windows 2022 Based
@@ -85,7 +85,7 @@ C:\> docker image pull mcr.microsoft.com/windows/nanoserver:ltsc2019
 ```bash
 C:\> docker image pull mcr.microsoft.com/windows/servercore:ltsc2022
 C:\> docker image pull mcr.microsoft.com/windows/nanoserver:ltsc2022
-# optionnal: docker pull mcr.microsoft.com/windows/server:ltsc2022
+# optional: docker pull mcr.microsoft.com/windows/server:ltsc2022
 ```
 
 ## Build your own containers
@@ -107,17 +107,20 @@ C:\> docker image tag gecoit84/woodpecker-git-plugin:2.6.0 ^
 
 ### Configuration
 
-- Copy directory _**backend-docker**_ to _**C:\ProgramData\woodpecker-docker**_
-- Get your SSL public cert file and copy to _**.\volumes\ssl**_ (optionnal)
+- Copy directory _**agent\backend-docker**_ to _**C:\ProgramData\woodpecker-docker**_
+- Get your SSL public cert file and copy to _**.\volumes\ssl**_ (optional)
+- Copy and edit _**.env.sample**_ to _**.env**_
+
 - Copy and edit _**.env.woodpecker-agent.sample**_ to _**.env.woodpecker-agent**_
 
 ```bash
+...
 WOODPECKER_SERVER="woodpecker.xxx"
 WOODPECKER_GRPC_SECURE="true"
 WOODPECKER_GRPC_VERIFY="true"
-WOODPECKER_MAX_WORKFLOWS="2"
+WOODPECKER_MAX_WORKFLOWS="1"
 WOODPECKER_AGENT_SECRET="xxx"
-WOODPECKER_HOSTNAME="woodpecker-agent5"
+WOODPECKER_HOSTNAME="wp-windows-agent1"
 ```
 
 - Edit _**docker-compose.yml**_
