@@ -36,7 +36,7 @@ labels:
   backend: docker
 
 workspace:
-  base: C:\tmp
+  base: C:\src
 
 clone:
   git:

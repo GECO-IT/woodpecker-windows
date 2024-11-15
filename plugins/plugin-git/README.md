@@ -20,7 +20,7 @@ You must add to our pipeline
 ```yaml
 ...
 workspace:
-  base: C:\tmp
+  base: C:\src
 
 clone:
   git:
