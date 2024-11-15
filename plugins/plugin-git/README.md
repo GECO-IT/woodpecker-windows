@@ -1,7 +1,7 @@
 # Woodpecker CI - Git Clone plugin
 
-* Documentation: <https://woodpecker-ci.org/plugins/Git%20Clone>
-* Source: <https://github.com/woodpecker-ci/plugin-git>
+- Documentation: <https://woodpecker-ci.org/plugins/Git%20Clone>
+- Source: <https://github.com/woodpecker-ci/plugin-git>
 
 For enable Trusted netrc:
 
@@ -31,7 +31,7 @@ steps:
 ...
 ```
 
-* trustedClonePlugins: <https://github.com/woodpecker-ci/woodpecker/blob/main/shared/constant/constant.go>
+- trustedClonePlugins: <https://github.com/woodpecker-ci/woodpecker/blob/main/shared/constant/constant.go>
 
 ```go
 ...
