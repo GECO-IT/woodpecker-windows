@@ -14,7 +14,6 @@ services:
       args:
         WOODPECKER_AGENT_VERSION: ${AGENT_VERSION}
         WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_VERSION_SHA256}
-    platform: windows/amd64
 
   agent-2.6.0:
     image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_OLD_VERSION}
@@ -24,7 +23,6 @@ services:
       args:
         WOODPECKER_AGENT_VERSION: ${AGENT_OLD_VERSION}
         WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_OLD_VERSION_SHA256}
-    platform: windows/amd64
 
   ##
   # Woodpecker Base images
@@ -34,21 +32,22 @@ services:
     build:
       context: ../base/windows-base
       dockerfile: Dockerfile.base.Windows
-    platform: windows/amd64
 
   base-chocolatey:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-base-chocolatey:latest
     build:
       context: ../base/windows-base
       dockerfile: Dockerfile.base-chocolatey.Windows
-    platform: windows/amd64
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
 
   base-chocolatey-msvsbuild:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-base-chocolatey-msvsbuild:latest
     build:
       context: ../base/windows-base
       dockerfile: Dockerfile.base-chocolatey-msvsbuild.Windows
-    platform: windows/amd64
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
 
   python-3.12:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.12
@@ -58,7 +57,6 @@ services:
       args:
         DOCKER_REGISTRY: ${DOCKER_REGISTRY}
         PYTHON_VERSION: 312
-    platform: windows/amd64
 
   python-3.11:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.11
@@ -68,7 +66,6 @@ services:
       args:
         DOCKER_REGISTRY: ${DOCKER_REGISTRY}
         PYTHON_VERSION: 311
-    platform: windows/amd64
 
   python-3.10:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.10
@@ -78,7 +75,6 @@ services:
       args:
         DOCKER_REGISTRY: ${DOCKER_REGISTRY}
         PYTHON_VERSION: 310
-    platform: windows/amd64
 
   ##
   # Woodpecker Plugins
@@ -91,4 +87,3 @@ services:
       args:
         PLUGIN_VERSION: ${PLUGIN_GIT_VERSION}
         PLUGIN_VERSION_SHA256: ${PLUGIN_GIT_VERSION_SHA256}
-    platform: windows/amd64
