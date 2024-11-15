@@ -2,7 +2,7 @@
 # escape=`
 
 ARG DOCKER_REGISTRY
-FROM ${DOCKER_REGISTRY}/woodpecker-windows-base:latest
+FROM ${DOCKER_REGISTRY}/woodpecker-windows-base-chocolatey:latest
 
 LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-windows-base-chocolatey-msvsbuild" `

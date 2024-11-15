@@ -22,4 +22,3 @@ RUN python.exe -m pip install --no-cache-dir --upgrade pip && `
 
 SHELL ["bash.exe", "-c"]
 
-ENTRYPOINT ["bash.exe"]
