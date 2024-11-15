@@ -15,4 +15,4 @@ RUN powershell -Command `
       iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" `
     `
     # Configure
-    && C:\ProgramData\chocolatey\bin\choco.exe config set cachelocation C:\tmp\cache
+    && C:\\ProgramData\\chocolatey\\bin\\choco.exe config set cachelocation C:\\tmp\\cache

@@ -2,3 +2,4 @@ ignored:
   - DL3007 # latest tag in Dockerfile
   - DL3018 # pin versions in Dockerfile
   - DL3013 # pin pip versions in Dockerfile
+  - SC1072 # cmd.exe code not bash

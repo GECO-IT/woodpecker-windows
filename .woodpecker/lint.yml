@@ -16,8 +16,8 @@ steps:
     image: pipelinecomponents/hadolint:0.26.4
     commands:
       - find . -name .git -type d -prune -o -type f -iname dockerfile.* -print0 | xargs -0 -r -n1 hadolint
-    when:
-      path: "Dockerfile.*"
+#    when:
+#      path: "Dockerfile.*"
 
   # https://gitlab.com/pipeline-components/shellcheck
   - name: lint-shell
