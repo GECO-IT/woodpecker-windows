@@ -16,8 +16,6 @@ steps:
     image: pipelinecomponents/hadolint:0.26.4
     commands:
       - find . -name .git -type d -prune -o -type f -iname dockerfile.* -print0 | xargs -0 -r -n1 hadolint
-#    when:
-#      path: "Dockerfile.*"
 
   # https://gitlab.com/pipeline-components/shellcheck
   - name: lint-shell
@@ -26,16 +24,12 @@ steps:
       - find . -name .git -type d -prune -o -type f -name \*.sh -print0 | xargs -0 -r -n1 shellcheck
       # remove all info check (quote,...)
       # - shellcheck -S warning *.sh
-    when:
-      path: "*.sh"
 
   # https://github.com/DavidAnson/markdownlint
   - name: lint-markdown
     image: davidanson/markdownlint-cli2:v0.14.0
     commands:
       - "markdownlint-cli2 *.{md,markdown}"
-    when:
-      path: "*.{md,markdown}"
 
   # https://gitlab.com/pipeline-components/yamllint
   - name: lint-yaml

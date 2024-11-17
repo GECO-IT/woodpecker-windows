@@ -1,6 +1,13 @@
 # Woodpecker-windows
 
-[![status-badge](https://ci.geco-it.net/api/badges/6/status.svg)](https://ci.geco-it.net/repos/6)
+[![pipeline-status](https://ci.geco-it.net/api/badges/woodpecker/woodpecker-windows/status.svg)](https://ci.geco-it.net/repos/woodpecker/woodpecker-windows)
+[![issues](https://git.geco-it.net/woodpecker/woodpecker-windows.git/badges/issues/open.svg?logo=forgejo&label=Issues&color=red)](https://git.geco-it.net/woodpecker/woodpecker-windows.git/issues?state=open)
+[![pulls](https://git.geco-it.net/woodpecker/woodpecker-windows.git/badges/pulls/open.svg?logo=forgejo&label=Pulls&color=orange)](https://git.geco-it.net/woodpecker/woodpecker-windows.git/pulls?state=open)
+[![release](https://git.geco-it.net/woodpecker/woodpecker-windows.git/badges/release.svg?logo=forgejo&label=Release)](https://git.geco-it.net/woodpecker/woodpecker-windows.git/releases)
+[![license](https://img.shields.io/badge/License-GPLv3-blue)](./LICENSE)
+
+> **Warning**
+> Read-only source code mirror of Geco-iT Open Source projects.
 
 All stuff for use [Woodpecker CI](https://woodpecker-ci.org) on Windows
 
