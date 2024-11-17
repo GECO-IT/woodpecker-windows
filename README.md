@@ -82,6 +82,3 @@ Released under GPLv3+
 ## Author Information
 
 This Windows port was created in 2024 by Cyril DUCHENOY, CEO of [Geco-iT SARL](https://www.geco-it.fr).
-
-> **Note**
-> Read-only source code mirror of Geco-iT Open Source projects.
