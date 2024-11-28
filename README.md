@@ -4,9 +4,10 @@
 [![issues](https://git.geco-it.net/woodpecker/woodpecker-windows.git/badges/issues/open.svg?logo=forgejo&label=Issues&color=red)](https://git.geco-it.net/woodpecker/woodpecker-windows.git/issues?state=open)
 [![pulls](https://git.geco-it.net/woodpecker/woodpecker-windows.git/badges/pulls/open.svg?logo=forgejo&label=Pulls&color=orange)](https://git.geco-it.net/woodpecker/woodpecker-windows.git/pulls?state=open)
 [![release](https://git.geco-it.net/woodpecker/woodpecker-windows.git/badges/release.svg?logo=forgejo&label=Release)](https://git.geco-it.net/woodpecker/woodpecker-windows.git/releases)
+[![Open-in-Coder](https://img.shields.io/badge/Open_in_Coder-purple?logo=coder)](https://coder.geco-it.net/templates/coder/docker-debian-base/workspace?mode=manual&param.git_repo=git@git.lan.geco-it.net:woodpecker/woodpecker-windows.git)
 [![license](https://img.shields.io/badge/License-GPLv3-blue)](./LICENSE)
 
-> **Warning**
+> [!WARNING]
 > Read-only source code mirror of Geco-iT Open Source projects.
 
 All stuff for use [Woodpecker CI](https://woodpecker-ci.org) on Windows
