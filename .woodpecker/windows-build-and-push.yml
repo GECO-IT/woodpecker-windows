@@ -10,8 +10,7 @@ depends_on:
 
 matrix:
   agent:
-    - 2.7.3
-    - 2.6.0
+    - 2.8.0
 
 steps:
   - name: configure

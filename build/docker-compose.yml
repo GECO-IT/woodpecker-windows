@@ -6,7 +6,7 @@ services:
   ##
   # Woodpecker Agent
   ##
-  agent-2.7.3:
+  agent:
     image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_VERSION}
     build:
       context: ../agent/backend-docker
@@ -14,15 +14,6 @@ services:
       args:
         WOODPECKER_AGENT_VERSION: ${AGENT_VERSION}
         WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_VERSION_SHA256}
-
-  agent-2.6.0:
-    image: ${DOCKER_REGISTRY}/woodpecker-agent:${AGENT_OLD_VERSION}
-    build:
-      context: ../agent/backend-docker
-      dockerfile: Dockerfile.Windows.old
-      args:
-        WOODPECKER_AGENT_VERSION: ${AGENT_OLD_VERSION}
-        WOODPECKER_AGENT_VERSION_SHA256: ${AGENT_OLD_VERSION_SHA256}
 
   ##
   # Woodpecker Base images

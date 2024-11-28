@@ -7,7 +7,7 @@
 :: Global vars
 
 :: path without space !
-set WOODPECKER_AGENT_VERSION=v2.6.0
+set WOODPECKER_AGENT_VERSION=v2.8.0
 
 set SETUP_PATH="C:\ProgramData\woodpecker-local"
 set SERVICE_NAME=woodpecker-agent
@@ -39,9 +39,9 @@ rem setx /M PATH "%SETUP_PATH%\bin;%PATH%"
 rem comment if we rerun it => so do it manual
 
 :: Download Woodpecker Windows Agent
-curl -fSLo ./woodpecker-agent.tar.gz https://github.com/woodpecker-ci/woodpecker/releases/download/%WOODPECKER_AGENT_VERSION%/woodpecker-agent_windows_amd64.tar.gz
-.\bin\tar.exe -xvzf ./woodpecker-agent.tar.gz -C .
-.\bin\rm.exe -f ./woodpecker-agent.tar.gz
+curl -fSLo ./woodpecker-agent.zip https://github.com/woodpecker-ci/woodpecker/releases/download/%WOODPECKER_AGENT_VERSION%/woodpecker-agent_windows_amd64.zip
+.\bin\unzip.exe -o -d . ./woodpecker-agent.zip
+.\bin\rm.exe -f ./woodpecker-agent.zip
 
 :: Woodpecker service - https://nssm.cc/commands
 .\nssm.exe install %SERVICE_NAME% "%SETUP_PATH%\woodpecker-agent.exe"

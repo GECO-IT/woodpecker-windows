@@ -43,13 +43,10 @@ labels:
   platform: windows/amd64
   backend: docker
 
-workspace:
-  base: C:\src
-
 clone:
-  git:
+  - name: clone
     # $ docker image tag \
-    #        <REPO_URL>/woodpecker/woodpecker-git-plugin:latest \
+    #        gecoit84/woodpecker-git-plugin \
     #        woodpeckerci/plugin-git:latest
     image: woodpeckerci/plugin-git
     pull: false

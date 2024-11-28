@@ -11,7 +11,7 @@ You must retag your git-plugin
 
 ```bash
 C:\> docker image tag \
-            <REPO_URL>/woodpecker/woodpecker-git-plugin:latest \
+            gecoit84/woodpecker-git-plugin:latest \
             woodpeckerci/plugin-git:latest
 ```
 
@@ -19,11 +19,8 @@ You must add to our pipeline
 
 ```yaml
 ...
-workspace:
-  base: C:\src
-
 clone:
-  git:
+  - name: clone
     image: woodpeckerci/plugin-git
     pull: false
 
