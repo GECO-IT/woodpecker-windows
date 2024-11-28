@@ -70,6 +70,7 @@ C:\> mklink C:\ProgramData\docker\cli-plugins\docker-buildx.exe C:\Windows\Syste
 ### Pull Windows Base Images
 
 Any Docker containers you run on Windows Server will be based on Windows Server Core or Nano Server.
+
 View <https://mcr.microsoft.com/en-us/product/windows/servercore/about>
 
 - Windows 2019 Based
@@ -163,13 +164,10 @@ labels:
   platform: windows/amd64
   backend: docker
 
-workspace:
-  base: C:\src
-
 clone:
-  git:
+  - name: clone
     # $ docker image tag \
-    #        <REPO_URL>/woodpecker/woodpecker-git-plugin:latest \
+    #        gecoit84/woodpecker-git-plugin:latest \
     #        woodpeckerci/plugin-git:latest
     image: woodpeckerci/plugin-git
     pull: false

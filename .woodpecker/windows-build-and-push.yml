@@ -8,10 +8,6 @@ depends_on:
   - windows-build-and-push-plugins
   - windows-build-and-push-base
 
-matrix:
-  agent:
-    - 2.8.0
-
 steps:
   - name: configure
     image: bash.exe
@@ -46,7 +42,7 @@ steps:
     image: bash.exe
     commands:
       - cd ./build
-      - docker-compose build agent-${agent}
+      - docker-compose build agent
     when:
       event: [push, tag]
 
@@ -54,7 +50,7 @@ steps:
     image: bash.exe
     commands:
       - cd ./build
-      - docker-compose push agent-${agent}
+      - docker-compose push agent
     when:
       event: tag
 
