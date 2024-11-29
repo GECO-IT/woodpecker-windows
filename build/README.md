@@ -22,9 +22,7 @@ DOCKER_REGISTRY=registry.xxx/woodpecker
 ##
 # Build Woodpecker Version: https://github.com/woodpecker-ci/woodpecker/tags
 ##
-AGENT_VERSION=v2.6.0 # max version on windows
-# view https://github.com/woodpecker-ci/woodpecker/pull/3933
-# with this commit error on volume mount
+AGENT_VERSION=v2.8.0
 
 ##
 # Plugins version
