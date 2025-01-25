@@ -16,7 +16,6 @@
 
 ## Tested environment
 
-- Windows Server 2019 core installation
 - Windows Server 2022 core installation
 - Docker >= 20.10
 - Woodpecker Agent **v1.05 to v2.6.0** and >= v2.8.0
