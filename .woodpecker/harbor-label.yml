@@ -16,7 +16,7 @@ skip_clone: true
 matrix:
   include:
     - image: woodpecker-agent
-      version: v2.8.0
+      version: v3.0.1
     - image: woodpecker-git-plugin
       version: latest
     - image: woodpecker-windows-base

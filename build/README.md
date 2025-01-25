@@ -22,7 +22,7 @@ DOCKER_REGISTRY=registry.xxx/woodpecker
 ##
 # Build Woodpecker Version: https://github.com/woodpecker-ci/woodpecker/tags
 ##
-AGENT_VERSION=v2.8.0
+AGENT_VERSION=v3.0.1
 
 ##
 # Plugins version

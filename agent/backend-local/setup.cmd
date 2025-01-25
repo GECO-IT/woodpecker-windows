@@ -7,7 +7,7 @@
 :: Global vars
 
 :: path without space !
-set WOODPECKER_AGENT_VERSION=v2.8.0
+set WOODPECKER_AGENT_VERSION=v3.0.1
 
 set SETUP_PATH="C:\ProgramData\woodpecker-local"
 set SERVICE_NAME=woodpecker-agent

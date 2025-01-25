@@ -8,8 +8,8 @@ ARG BUSYBOX_VERSION=busybox-w64u-FRP-5467-g9376eebd8.exe `
     BUSYBOX_VERSION_SHA256=a78891d1067c6cd36c9849754d7be0402aae1bc977758635c27911fd7c824f6b
 
 # Woodpecker Windows Agent https://github.com/woodpecker-ci/woodpecker/tags
-ARG WOODPECKER_AGENT_VERSION=v2.8.0 `
-    WOODPECKER_AGENT_VERSION_SHA256=f349f39863c4121d9d66b2a6c0e567966f5c4429fec5130fb36e12f4db98517a
+ARG WOODPECKER_AGENT_VERSION=v3.0.1 `
+    WOODPECKER_AGENT_VERSION_SHA256=d4ef8e2fa94281bc1e369786030fe7d5afa70fff98ec613d60e4c795bfd8ac8b
 
 LABEL maintainer="Geco-iT Team <contact@geco-it.fr>" `
       name="geco-it/woodpecker-agent" `

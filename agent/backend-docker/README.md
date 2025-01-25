@@ -95,7 +95,7 @@ Follow [documentation](../../build/README.md) or you can
 use images at <https://hub.docker.com/search?q=gecoit84>
 
 ```command
-C:\> docker pull gecoit84/woodpecker-agent:2.8.0
+C:\> docker pull gecoit84/woodpecker-agent:3.0.1
 C:\> docker pull gecoit84/woodpecker-windows-base:latest
 C:\> docker pull gecoit84/woodpecker-git-plugin:2.6.0
 
@@ -135,7 +135,7 @@ PS C:\ProgramData\woodpecker-docker> docker compose up -d
 
 PS C:\ProgramData\woodpecker-docker> docker compose logs agent
 ...
-agent-1  |... starting Woodpecker agent with version '2.8.0' and backend
+agent-1  |... starting Woodpecker agent with version '3.0.1' and backend
 'docker' using platform 'windows/amd64' running up to 2 pipelines in parallel ...
 ```
 

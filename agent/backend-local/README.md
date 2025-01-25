@@ -8,7 +8,7 @@
 2. Edit global vars _**setup.cmd**_
 
 ```bash
-WOODPECKER_AGENT_VERSION="v2.8.0"
+WOODPECKER_AGENT_VERSION="v3.0.1"
 WOODPECKER_SERVER="woodpecker.lan.xxxxx:39443"
 WOODPECKER_HOSTNAME="woodpecker-agentxxx"
 WOODPECKER_AGENT_SECRET="xxxxx"
