@@ -31,6 +31,8 @@ matrix:
       version: 3.11
     - image: woodpecker-windows-python
       version: 3.12
+    - image: woodpecker-windows-python
+      version: 3.13
 
 steps:
   - name: Add 'docker-hub' label
