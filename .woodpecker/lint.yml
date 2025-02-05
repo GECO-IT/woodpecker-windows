@@ -13,7 +13,7 @@ when:
 steps:
   # https://gitlab.com/pipeline-components/hadolint
   - name: lint-dockerfile
-    image: pipelinecomponents/hadolint:0.27.0
+    image: pipelinecomponents/hadolint:0.27.1
     commands:
       - find . -name .git -type d -prune -o -type f -iname dockerfile.* -print0 | xargs -0 -r -n1 hadolint
 
