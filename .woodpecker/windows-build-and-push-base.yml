@@ -11,6 +11,7 @@ matrix:
     - base
     - base-chocolatey
     - base-chocolatey-msvsbuild
+    - python-3.13
     - python-3.12
     - python-3.11
     - python-3.10
