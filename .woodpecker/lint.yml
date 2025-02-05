@@ -19,7 +19,7 @@ steps:
 
   # https://gitlab.com/pipeline-components/shellcheck
   - name: lint-shell
-    image: registry.gitlab.com/pipeline-components/shellcheck:0.12.12
+    image: registry.gitlab.com/pipeline-components/shellcheck:0.13.0
     commands:
       - find . -name .git -type d -prune -o -type f -name \*.sh -print0 | xargs -0 -r -n1 shellcheck
       # remove all info check (quote,...)
