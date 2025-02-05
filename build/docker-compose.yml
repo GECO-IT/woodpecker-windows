@@ -40,6 +40,15 @@ services:
       args:
         DOCKER_REGISTRY: ${DOCKER_REGISTRY}
 
+  python-3.13:
+    image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.13
+    build:
+      context: ../base/windows-python
+      dockerfile: Dockerfile.Windows
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+        PYTHON_VERSION: 313
+
   python-3.12:
     image: ${DOCKER_REGISTRY}/woodpecker-windows-python:3.12
     build:
