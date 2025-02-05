@@ -22,4 +22,3 @@ RUN powershell -Command `
 	   rmdir /S /Q C:\tmp\cache
 
 SHELL ["bash.exe", "-c"]
-

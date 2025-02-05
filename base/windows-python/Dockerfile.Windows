@@ -21,4 +21,3 @@ RUN python.exe -m pip install --no-cache-dir --upgrade pip && `
     pip install --no-cache-dir --upgrade setuptools
 
 SHELL ["bash.exe", "-c"]
-
