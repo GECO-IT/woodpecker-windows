@@ -26,13 +26,11 @@ matrix:
     - image: woodpecker-windows-base-chocolatey-msvsbuild
       version: latest
     - image: woodpecker-windows-python
-      version: "3.10"
-    - image: woodpecker-windows-python
-      version: "3.11"
-    - image: woodpecker-windows-python
-      version: "3.12"
-    - image: woodpecker-windows-python
-      version: "3.13"
+      version:
+        - "3.10"
+        - "3.11"
+        - "3.12"
+        - "3.13"
 
 steps:
   - name: Add 'docker-hub' label
