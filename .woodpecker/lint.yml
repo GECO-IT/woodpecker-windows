@@ -27,7 +27,7 @@ steps:
 
   # https://github.com/DavidAnson/markdownlint
   - name: lint-markdown
-    image: davidanson/markdownlint-cli2:v0.17.2
+    image: davidanson/markdownlint-cli2:v0.18.1
     commands:
       - "markdownlint-cli2 *.{md,markdown}"
 
