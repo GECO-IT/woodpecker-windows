@@ -29,7 +29,7 @@ repos:
       - id: markdownlint-cli2
         name: Check markdown (markdownlint-cli2)
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.13.1-beta
+    rev: v2.14.0
     hooks:
       - id: hadolint
         name: Check Dockerfiles (hadolint)
