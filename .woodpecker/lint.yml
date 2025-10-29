@@ -33,6 +33,6 @@ steps:
 
   # https://gitlab.com/pipeline-components/yamllint
   - name: lint-yaml
-    image: registry.gitlab.com/pipeline-components/yamllint:0.35.6
+    image: registry.gitlab.com/pipeline-components/yamllint:0.35.9
     commands:
       - yamllint --strict -f colored .
