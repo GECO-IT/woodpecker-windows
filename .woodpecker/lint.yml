@@ -13,7 +13,7 @@ when:
 steps:
   # https://gitlab.com/pipeline-components/hadolint
   - name: lint-dockerfile
-    image: pipelinecomponents/hadolint:0.27.5
+    image: pipelinecomponents/hadolint:0.27.14
     commands:
       - find . -name .git -type d -prune -o -type f -iname dockerfile.* -print0 | xargs -0 -r -n1 hadolint
 
@@ -27,12 +27,12 @@ steps:
 
   # https://github.com/DavidAnson/markdownlint
   - name: lint-markdown
-    image: davidanson/markdownlint-cli2:v0.22.1
+    image: davidanson/markdownlint-cli2:v0.23.2
     commands:
       - "markdownlint-cli2 *.{md,markdown}"
 
   # https://gitlab.com/pipeline-components/yamllint
   - name: lint-yaml
-    image: registry.gitlab.com/pipeline-components/yamllint:0.35.9
+    image: registry.gitlab.com/pipeline-components/yamllint:0.35.13
     commands:
       - yamllint --strict -f colored .
